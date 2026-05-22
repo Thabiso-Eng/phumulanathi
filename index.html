@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Phumulanathi Guest House | Ermelo</title>
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* DESIGN TOKENS & SYSTEM RESET */
+        :root {
+            --black-bg: #0A0A0A;
+            --card-bg: #161616;
+            --input-bg: #222222;
+            --gold-metallic: #D4AF37;
+            --gold-bright: #F3CD5F;
+            --amber-yellow: #FFB300;
+            --text-main: #FFFFFF;
+            --text-sub: #CCCCCC;
+            --text-muted: #888888;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            background-color: var(--black-bg);
+            color: var(--text-main);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* PREMIUM TIPOGRAPHY */
+        h1, h2, h3, .motto-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* MOBILE OPTIMIZED NAVIGATION BAR */
+        header {
+            background-color: rgba(10, 10, 10, 0.98);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(214, 175, 55, 0.4);
+            backdrop-filter: blur(8px);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: var(--gold-metallic);
+        }
+
+        .quick-call-btn {
+            background: linear-gradient(135deg, var(--gold-metallic), var(--amber-yellow));
+            color: #000000;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 10px rgba(214, 175, 55, 0.2);
+        }
+
+        /* HERO AREA WITH BRAND MOTTO */
+        .hero {
+            height: 85vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(10,10,10,1)), 
+                        url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 24px;
+        }
+
+        .hero h1 {
+            font-size: 38px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            line-height: 1.2;
+            margin-bottom: 8px;
+            margin-top: 40px;
+        }
+
+        .hero-motto {
+            font-size: 22px;
+            color: var(--gold-bright);
+            font-style: italic;
+            margin-bottom: 12px;
+        }
+
+        .hero-tagline {
+            font-size: 14px;
+            color: var(--text-sub);
+            max-width: 500px;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        /* MOBILE FIRST BOOKING MOTOR / ENGINE */
+        .booking-card-wrapper {
+            padding: 0 16px;
+            margin-top: -60px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .booking-engine-box {
+            background-color: var(--card-bg);
+            border: 1px solid rgba(214, 175, 55, 0.3);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+        }
+
+        .engine-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #4CAF50;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .engine-status span {
+            width: 8px;
+            height: 8px;
+            background-color: #4CAF50;
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulse 1.8s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.9); opacity: 0.6; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(0.9); opacity: 0.6; }
+        }
+
+        .mobile-form-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .field-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .field-group label {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--gold-metallic);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .field-group input, .field-group select {
+            background-color: var(--input-bg);
+            border: 1px solid #333333;
+            padding: 14px;
+            color: #FFFFFF;
+            border-radius: 6px;
+            font-size: 15px;
+            outline: none;
+            width: 100%;
+            height: 48px; /* Optimized tap target size */
+            transition: border-color 0.3s;
+        }
+
+        .field-group input:focus {
+            border-color: var(--amber-yellow);
+        }
+
+        .submit-search-btn {
+            background: linear-gradient(135deg, var(--gold-metallic), var(--amber-yellow));
+            color: #000000;
+            border: none;
+            height: 50px;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            margin-top: 8px;
+            box-shadow: 0 4px 15px rgba(255, 179, 0, 0.2);
+        }
+
+        /* VALUE PROPOSITION / STORY SECTION */
+        .brand-story-section {
+            padding: 60px 20px;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .brand-story-section h2 {
+            font-size: 28px;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .brand-story-section p {
+            font-size: 14px;
+            color: var(--text-sub);
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        /* ACCOMMODATION LISTINGS */
+        .section-header {
+            padding: 0 20px;
+            margin-bottom: 24px;
+        }
+
+        .section-header h2 {
+            font-size: 28px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 2px;
+            background-color: var(--gold-metallic);
+            margin-top: 6px;
+        }
+
+        .rooms-mobile-list {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            padding: 0 16px;
+        }
+
+        .room-mobile-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #222222;
+        }
+
+        .room-img-container {
+            position: relative;
+            height: 200px;
+            width: 100%;
+        }
+
+        .room-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .room-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background-color: rgba(0,0,0,0.75);
+            border: 1px solid var(--gold-metallic);
+            color: var(--gold-bright);
+            padding: 4px 10px;
+            font-size: 11px;
+            font-weight: 500;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .room-details-box {
+            padding: 20px;
+        }
+
+        .room-details-box h3 {
+            font-size: 20px;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        .room-perks {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 16px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .room-perks span i {
+            color: var(--amber-yellow);
+            margin-right: 4px;
+        }
+
+        .card-action-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #222222;
+            padding-top: 14px;
+        }
+
+        .rate-display {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--gold-bright);
+        }
+
+        .rate-display span {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .action-tap-btn {
+            background-color: transparent;
+            border: 1px solid var(--gold-metallic);
+            color: var(--gold-metallic);
+            padding: 10px 18px;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .action-tap-btn:active {
+            background-color: var(--gold-metallic);
+            color: #000000;
+        }
+
+        /* LOCATION & INTERACTIVE REGIONAL MAP */
+        .location-section {
+            padding: 50px 16px;
+        }
+
+        .location-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 24px;
+            border: 1px solid #222222;
+        }
+
+        .location-card h3 {
+            font-size: 22px;
+            color: var(--gold-bright);
+            margin-bottom: 12px;
+        }
+
+        .location-card p {
+            font-size: 13px;
+            color: var(--text-sub);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .amenity-bullet {
+            font-size: 13px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-sub);
+        }
+
+        .amenity-bullet i {
+            color: var(--amber-yellow);
+        }
+
+        .map-frame-holder {
+            margin-top: 20px;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid #333333;
+        }
+
+        .map-frame-holder iframe {
+            width: 100%;
+            height: 260px;
+            border: 0;
+            filter: grayscale(1) invert(0.92) contrast(1.1); /* Matches executive premium UI dark mode */
+        }
+
+        /* FOOTER BRANDING */
+        footer {
+            background-color: #050505;
+            padding: 30px 20px;
+            text-align: center;
+            border-top: 1px solid #1a1a1a;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        footer p span {
+            color: var(--gold-metallic);
+            font-weight: 500;
+        }
+
+        /* MOBILE OVERLAY NOTIFICATION INTERACTION */
+        .app-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.85);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .app-modal-inner {
+            background-color: var(--card-bg);
+            border: 2px solid var(--gold-metallic);
+            padding: 30px 20px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        .app-modal-inner i {
+            font-size: 40px;
+            color: #4CAF50;
+            margin-bottom: 16px;
+        }
+
+        .app-modal-inner h4 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .app-modal-inner p {
+            font-size: 13px;
+            color: var(--text-sub);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .dismiss-btn {
+            background: linear-gradient(135deg, var(--gold-metallic), var(--amber-yellow));
+            color: #000000;
+            border: none;
+            padding: 12px 30px;
+            font-size: 13px;
+            font-weight: 700;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SYSTEM TOP LOGO & HEADER -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">Phumulanathi<span>.</span></div>
+            <a href="tel:#" class="quick-call-btn"><i class="fa-solid fa-phone"></i> Call Direct</a>
+        </div>
+    </header>
+
+    <!-- MOTTO BRADING HERO MAIN SCENE -->
+    <div class="hero">
+        <h1 class="motto-font">Phumulanathi</h1>
+        <p class="hero-motto">"Where you find rest"</p>
+        <p class="hero-tagline">Experience elite boutique comfort and tranquil hospitality nestled in the prime hub of Ermelo, Mpumalanga.</p>
+    </div>
+
+    <!-- RESPONSIVE LIVE BOOKING ENGINE CARD -->
+    <div class="booking-card-wrapper">
+        <div class="booking-engine-box">
+            <div class="engine-status">
+                <span></span> Live Sync: PMS Connected
+            </div>
+            <form class="mobile-form-stack" onsubmit="triggerMockSync(event)">
+                <div class="field-group">
+                    <label><i class="fa-solid fa-calendar-check"></i> Check-In Date</label>
+                    <input type="date" required id="checkin-date">
+                </div>
+                <div class="field-group">
+                    <label><i class="fa-solid fa-calendar-xmark"></i> Check-Out Date</label>
+                    <input type="date" required id="checkout-date">
+                </div>
+                <div class="field-group">
+                    <label><i class="fa-solid fa-user-group"></i> Room Occupancy</label>
+                    <select id="occupants-count">
+                        <option value="1">1 Professional / Guest</option>
+                        <option value="2">2 Guests (Double Bed)</option>
+                        <option value="3">3 Guests (Family)</option>
+                        <option value="4">Executive Suite (All Inclusive)</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-search-btn">Verify Availability</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- BUSINESS VALUE BRAND STATEMENT -->
+    <div class="brand-story-section">
+        <h2>Tailored Comfort</h2>
+        <p>Engineered for the discerning corporate traveler and visitor, Phumulanathi pairs secure, modern accommodations with unmatched, tranquil hospitality. Every room is designed to turn busy days into peaceful nights.</p>
+    </div>
+
+    <!-- ROOM SELECTION SCROLL -->
+    <div class="section-header">
+        <h2>Our Rooms</h2>
+    </div>
+    
+    <div class="rooms-mobile-list">
+        
+        <!-- Room Item 1 -->
+        <div class="room-mobile-card">
+            <div class="room-img-container">
+                <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=500&q=80" alt="Executive Standard">
+                <div class="room-badge">Popular</div>
+            </div>
+            <div class="room-details-box">
+                <h3>Executive Standard</h3>
+                <div class="room-perks">
+                    <span><i class="fa-solid fa-wifi"></i> Fiber Wi-Fi</span>
+                    <span><i class="fa-solid fa-snowflake"></i> Climate Control</span>
+                    <span><i class="fa-solid fa-shield"></i> Safe</span>
+                </div>
+                <div class="card-action-row">
+                    <div class="rate-display">R850 <span>/ night</span></div>
+                    <button class="action-tap-btn" onclick="instantRoomLock('Executive Standard')">Instant Lock</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Room Item 2 -->
+        <div class="room-mobile-card">
+            <div class="room-img-container">
+                <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=500&q=80" alt="Luxury Gold Suite">
+                <div class="room-badge">Premium</div>
+            </div>
+            <div class="room-details-box">
+                <h3>Luxury Gold Suite</h3>
+                <div class="room-perks">
+                    <span><i class="fa-solid fa-wifi"></i> Fiber Wi-Fi</span>
+                    <span><i class="fa-solid fa-mug-hot"></i> Breakfast</span>
+                    <span><i class="fa-solid fa-tv"></i> Smart Entertainment</span>
+                </div>
+                <div class="card-action-row">
+                    <div class="rate-display">R1,250 <span>/ night</span></div>
+                    <button class="action-tap-btn" onclick="instantRoomLock('Luxury Gold Suite')">Instant Lock</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- GEOLOCATION MAP & AMENITY INFRASTRUCTURE -->
+    <div class="location-section">
+        <div class="location-card">
+            <h3>Strategic Location</h3>
+            <p>Perfectly mapped in Ermelo, Mpumalanga, facilitating efficient logistics and travel routes for corporate, industrial, and leisure sectors.</p>
+            
+            <div class="amenity-bullet"><i class="fa-solid fa-circle-check"></i> 24-Hour Secure Perimeter & Controlled Gate Access</div>
+            <div class="amenity-bullet"><i class="fa-solid fa-circle-check"></i> Seamless Connection to Primary Regional Infrastructure</div>
+            <div class="amenity-bullet"><i class="fa-solid fa-circle-check"></i> High-Speed Professional Workspace Integration</div>
+
+            <div class="map-frame-holder">
+                <!-- LIVE MAP FETCH EMBED HOOKED TO ERMELO -->
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14309.28472403666!2d29.973415170327663!3d-26.52425026900222!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1eeb60002f6bc7cf%3A0x76fb9a98ef112ea1!2sErmelo!5e0!3m2!1sen!2sza!4v1710000000000!5m2!1sen!2sza" 
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- BRAND FOOTER -->
+    <footer>
+        <p>&copy; 2026 <span>Phumulanathi Guest House</span>.<br>Smart Automation & Luxury Architecture.</p>
+    </footer>
+
+    <!-- INTERACTIVE ENGINE SIMULATION OVERLAY -->
+    <div class="app-modal" id="appOverlay">
+        <div class="app-modal-inner">
+            <i class="fa-solid fa-circle-nodes" id="modalIcon"></i>
+            <h4 id="modalHeading">Processing Request</h4>
+            <p id="modalMessage">Connecting to Central Sheet database...</p>
+            <button class="dismiss-btn" onclick="dismissOverlay()">Acknowledge</button>
+        </div>
+    </div>
+
+    <!-- CONTROL LOGIC FOR ENGINE TESTING -->
+    <script>
+        // Set context constraints to current date parameters
+        const dateStamp = new Date().toISOString().split('T')[0];
+        document.getElementById('checkin-date').value = dateStamp;
+        document.getElementById('checkin-date').min = dateStamp;
+        document.getElementById('checkout-date').min = dateStamp;
+
+        function triggerMockSync(e) {
+            e.preventDefault();
+            const cin = document.getElementById('checkin-date').value;
+            const cout = document.getElementById('checkout-date').value;
+            
+            document.getElementById('modalIcon').className = "fa-solid fa-rotate-toggle fa-spin";
+            document.getElementById('modalIcon').style.color = "#FFB300";
+            document.getElementById('modalHeading').innerText = "Real-Time Query Sent";
+            document.getElementById('modalMessage').innerHTML = `Scanning calendar databases from <strong>${cin}</strong> to <strong>${cout}</strong>.<br><br>The booking engine instantly updates global inventories across channels dynamically!`;
+            
+            openOverlay();
+        }
+
+        function instantRoomLock(variant) {
+            document.getElementById('modalIcon').className = "fa-solid fa-shield-halved";
+            document.getElementById('modalIcon').style.color = "#D4AF37";
+            document.getElementById('modalHeading').innerText = "Room Allocation Isolated";
+            document.getElementById('modalMessage').innerHTML = `You have flagged the <strong>${variant}</strong>.<br><br>The channel manager prevents split-second duplicate bookings by locking this unit on local APIs immediately.`;
+            
+            openOverlay();
+        }
+
+        function openOverlay() {
+            document.getElementById('appOverlay').style.display = 'flex';
+        }
+
+        function dismissOverlay() {
+            document.getElementById('appOverlay').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
